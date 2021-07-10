@@ -2,6 +2,7 @@
 
 namespace App\Utils;
 use App\Services\CountriesInfo as CountriesInfo;
+use App\Constants\Constants;
 class CountriesUtil
 {
 
@@ -10,7 +11,7 @@ class CountriesUtil
         if(isset($phone)){
             $country_code = CountriesUtil::getCode($phone);
             if(CountriesInfo::COUNTRIES_ENUM[$country_code]){
-                $country_name =  CountriesInfo::COUNTRIES_ENUM[$country_code]['country'];
+                $country_name =  CountriesInfo::COUNTRIES_ENUM[$country_code][Constants::COUNTRY_KEY];
             }
         }
         return $country_name;           
@@ -22,12 +23,12 @@ class CountriesUtil
     if(isset($phone)){
       $country_code = CountriesUtil::getCode($phone);
       if( isset(CountriesInfo::COUNTRIES_ENUM[$country_code]) ){
-        $regex =  '/' . CountriesInfo::COUNTRIES_ENUM[$country_code]['regex'] . '/';        
+        $regex =  '/' . CountriesInfo::COUNTRIES_ENUM[$country_code][Constants::REGEX_KEY] . '/';        
         preg_match($regex, $phone, $matches);
         if(count($matches) > 0){
-          return 'OK';
+          return Constants::STATE_OK;
         }
-        return 'NOK';
+        return Constants::STATE_NOK;
       }
       
     }

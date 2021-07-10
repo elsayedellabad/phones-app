@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Utils\CountriesUtil ;
+use App\Constants\Constants;
 class CustomerModel extends Model
 {
     use HasFactory;
     protected  $table='customer';
-    protected  $appends = ['country','state','country_code','phone_num'];
+    protected  $appends = [Constants::COUNTRY_COL_NAME, Constants::STATE_COL_NAME, Constants::COUNTRY_CODE_COL_NAME, Constants::PHONE_NUM_COL_NAME];
 
     public function getCountryAttribute()
     {

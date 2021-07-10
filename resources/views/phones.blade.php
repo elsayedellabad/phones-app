@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Laravel Pagination Demo</title>
+    <title>Countries Phones</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
@@ -12,18 +12,13 @@
 <body>
     
     <div class="container mt-5">
-        <!-- @if(isset($errors))
-            @foreach ($errors->all('<p style="color:red">:message</p>') as $error)
-                {{$error}}
-            @endforeach
-        @endif -->
         <h1 style ="margin-bottom: 50px">Phone numbers [{{ count($customers); }}]</h1>
 
         <form class="form-inline">
             <div class="form-group mb-4">
                 <label for="exampleFormControlSelect1"></label>
                 <select class="form-control form-select-lg mb-3" id="country"  onchange="getUpdatedPhones()" style ="width: 250px">
-                    <option {{($country_code =='all')? 'selected' : ''}} value="all" > Select Country</option>
+                    <option {{($country_code == \App\Constants\Constants::DEFAULT_ALL)? 'selected' : ''}} value="all" > Select Country</option>
                     @foreach($countries  as $code => $country)
                         <option  {{($country_code == $code)? 'selected' : ''}} value="{{ $code }}" >{{ $country }} </option>
                     @endforeach                    
@@ -32,9 +27,9 @@
             <div class="form-group mb-4">
                 <label for="exampleFormControlSelect2"></label>
                 <select class="form-control form-select-lg mb-3" id="state" onchange="getUpdatedPhones()" style ="width: 250px; margin-left: 30px;">
-                    <option {{($state =='all')? 'selected' : ''}} value="all">All</option>
-                    <option  {{($state == 'valid')? 'selected' : ''}} value="valid">Valid Phone Numbers</option>
-                    <option  {{($state == 'invalid')? 'selected' : ''}} value="invalid">Invalid Phone Numbers</option>
+                    <option {{($state == \App\Constants\Constants::DEFAULT_ALL)? 'selected' : ''}} value="{{\App\Constants\Constants::DEFAULT_ALL}}">All</option>
+                    <option  {{($state == \App\Constants\Constants::STATE_VALID_KEY)? 'selected' : ''}} value="{{\App\Constants\Constants::STATE_VALID_KEY}}">Valid Phone Numbers</option>
+                    <option  {{($state == \App\Constants\Constants::STATE_INVALID_KEY)? 'selected' : ''}} value="{{\App\Constants\Constants::STATE_INVALID_KEY}}">Invalid Phone Numbers</option>
                 </select>
             </div>
             
@@ -69,7 +64,7 @@
         @endif
 
         @if(isset($customers) && count($customers) == 0)
-            <h5> There are no results for your selected filters, Please select another one. </h1>
+            <h5> {{\App\Constants\Constants::NO_RESULT_PHONES}} </h1>
         @endif
     </div>
 </body>
@@ -78,14 +73,13 @@
 <script type="text/javascript"> 
     
    
-    function getUpdatedPhones(){
-        //alert(document.getElementById('country').value + document.getElementById('state').value);        
+    function getUpdatedPhones(){       
         var country_code =   document.getElementById('country').value;
         var state   =   document.getElementById('state').value;
-
         base = "<?php echo URL::to('/'); ?>";
         window.location = base + '/' + country_code + '/' + state;
 
+        
         //base = "<?php echo URL::to('api/customers'); ?>";
         // var xmlHttp = null;    
         // xmlHttp = new XMLHttpRequest();

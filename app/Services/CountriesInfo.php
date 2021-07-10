@@ -1,36 +1,37 @@
 <?php
 
 namespace App\Services;
+use App\Constants\Constants;
 class CountriesInfo
 {
   
 
     const COUNTRIES_ENUM = array
     (
-        "+237" => array
+      Constants::COUNTRY_CODE_CAMEROON => array
                       (
-                        "country" => "Cameroon",
-                        "regex" => "\(237\)\ ?[2368]\d{7,8}$"
+                        Constants::COUNTRY_KEY => Constants::COUNTRY_NAME_CAMEROON,
+                        Constants::REGEX_KEY => Constants::CAMEROON_PHONE_REGEX ,
                       ),
-        "+251" => array
+      Constants::COUNTRY_CODE_ETHIOPIA => array
                       (
-                        "country" => "Ethiopia",
-                        "regex" => "\(251\)\ ?[1-59]\d{8}$",
+                        Constants::COUNTRY_KEY => Constants::COUNTRY_NAME_ETHIOPIA,
+                        Constants::REGEX_KEY => Constants::ETHIOPIA_PHONE_REGEX ,
                       ),
-        "+212" => array
+      Constants::COUNTRY_CODE_MOROCCO => array
                       (
-                        "country" => "Morocco",
-                        "regex" => "\(212\)\ ?[5-9]\d{8}$",
+                        Constants::COUNTRY_KEY => Constants::COUNTRY_NAME_MOROCCO,
+                        Constants::REGEX_KEY => Constants::MOROCCO_PHONE_REGEX ,
                       ),
-        "+258" => array
+      Constants::COUNTRY_CODE_MOZAMBIQUE => array
                       (
-                        "country" => "Mozambique",
-                        "regex" => "\(258\)\ ?[28]\d{7,8}$",
+                        Constants::COUNTRY_KEY => Constants::COUNTRY_NAME_MOZAMBIQUE,
+                        Constants::REGEX_KEY => Constants::MOZAMBIQUE_PHONE_REGEX ,
                       ),
-        "+256" => array
+      Constants::COUNTRY_CODE_UGANDA => array
                       (
-                        "country" => "Uganda",
-                        "regex" => "\(256\)\ ?\d{9}$",
+                        Constants::COUNTRY_KEY =>  Constants::COUNTRY_NAME_UGANDA,
+                        Constants::REGEX_KEY => Constants::UGANDA_PHONE_REGEX ,
                       )
     );
 }
