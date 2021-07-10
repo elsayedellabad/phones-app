@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Services\Customer;
+use App\Services\CustomerService;
 use App\Http\Controllers\CustomerController;
 
 /*

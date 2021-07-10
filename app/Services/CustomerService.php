@@ -4,7 +4,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\DB;
 use App\Models\CustomerModel as CustomerModel;
 use App\Services\CountriesInfo as CountriesInfo;
-class Customer
+class CustomerService
 {    
 
     public function filterCustomerInfo($country_code = 'all', $state = 'all'){
