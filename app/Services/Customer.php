@@ -34,7 +34,9 @@ class Customer
         if($country_code == 'all'){
             $arr = CountriesInfo::COUNTRIES_ENUM;
         } else {
-            array_push($arr, CountriesInfo::COUNTRIES_ENUM[$country_code]);
+            if(isset(CountriesInfo::COUNTRIES_ENUM[$country_code])){
+                array_push($arr, CountriesInfo::COUNTRIES_ENUM[$country_code]);
+            }
         }        
         return $arr;            
     }

@@ -40,32 +40,37 @@
             
         </form>
             
-        
-        <table class="table table-bordered table-striped mb-5">
-            <thead>
-                <tr class="table-success">
-                    <th scope="col">Country</th>
-                    <th scope="col">State</th>
-                    <th scope="col">Country Code</th>
-                    <th scope="col">Phone Num</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($customers as $data)
-                <tr>
-                    <th scope="row">{{ $data['country'] }}</th>
-                    <td>{{ $data['state'] }}</td>
-                    <td>{{ $data['country_code'] }}</td>
-                    <td>{{ $data['phone_num'] }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        @if(isset($customers) && count($customers) > 0)
+            <table class="table table-bordered table-striped mb-5">
+                <thead>
+                    <tr class="table-success">
+                        <th scope="col">Country</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Country Code</th>
+                        <th scope="col">Phone Num</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($customers as $data)
+                    <tr>
+                        <th scope="row">{{ $data['country'] }}</th>
+                        <td>{{ $data['state'] }}</td>
+                        <td>{{ $data['country_code'] }}</td>
+                        <td>{{ $data['phone_num'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-        {{-- Pagination --}}
-        <div class="d-flex justify-content-center">
-            
-        </div>
+            {{-- Pagination --}}
+            <div class="d-flex justify-content-center">
+                
+            </div>
+        @endif
+
+        @if(isset($customers) && count($customers) == 0)
+            <h5> There are no results for your selected filters, Please select another one. </h1>
+        @endif
     </div>
 </body>
 
