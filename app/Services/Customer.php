@@ -2,7 +2,7 @@
 
 namespace App\Services;
 use Illuminate\Support\Facades\DB;
-use App\Models\Customer as CustomerModel;
+use App\Models\CustomerModel as CustomerModel;
 use App\Services\CountriesInfo as CountriesInfo;
 class Customer
 {    
