@@ -7,29 +7,56 @@ use App\Services\CountriesInfo as CountriesInfo;
 use App\Constants\Constants;
 class CustomerService
 {    
-
+    /**
+     * API to get countries customers phones according to user filterations values
+     * 
+     * @param string $country_code
+     * @param string $state
+     * @return array
+     */
     public function filterCustomerInfo($country_code = Constants::DEFAULT_ALL, $state = Constants::DEFAULT_ALL){
         $customers= [];
         $validCountries = $this->getByCode($country_code);
         $this->initializeRegexpDBFunction();
-
         foreach ($validCountries as $validCountry) {
+            //Extract Key from Country Regex
             $key = substr(trim($validCountry[Constants::REGEX_KEY]), strpos($validCountry[Constants::REGEX_KEY], '(') + 1,  strpos($validCountry[Constants::REGEX_KEY], '\)') - 2 );
             $key = '(' . ($key) . ')';
             if($state == Constants::STATE_VALID_KEY || $state == Constants::DEFAULT_ALL){
-                $customers = array_merge( $customers , CustomerModel::where('phone', 'REGEXP', $validCountry[Constants::REGEX_KEY])
-                ->where('phone', 'like', $key . '%')
-                ->get()->toArray());
+                $customers = $this->executeQuery($customers , 'REGEXP', $validCountry, $key);
             } 
             if($state == Constants::STATE_INVALID_KEY || $state == Constants::DEFAULT_ALL){
-                $customers = array_merge( $customers , CustomerModel::where('phone', 'NOT REGEXP', $validCountry[Constants::REGEX_KEY])
-                ->where('phone', 'like', $key . '%')
-                ->get()->toArray());
+                $customers = $this->executeQuery($customers , 'NOT REGEXP', $validCountry, $key);
             }            
         }
         return $customers;
     }
-   
+    
+    /**
+     * Model Query to return required info
+     * 
+     * @param array $customers
+     * @param string $validation_method
+     * @param array $validCountry
+     * @param string $key
+     * @return array
+     */
+    private function executeQuery($customers, $validation_method, $validCountry, $key) {
+        $customers = array_merge( $customers , CustomerModel::where('phone', $validation_method , $validCountry[Constants::REGEX_KEY])
+        ->where('phone', 'like', $key . '%')
+        ->get()->toArray());
+        return $customers;
+    }
+    
+    /**
+     * Get countries info[contry_name, country_regex] by calling {COUNTRIES_ENUM} of {CountriesInfo} class
+     * 
+     * @param array $customers
+     * @param string $validation_method
+     * @param array $validCountry
+     * @param string $key
+     * @return array
+     */
     private function getByCode($country_code) {
         $arr = [];
         if($country_code == Constants::DEFAULT_ALL){
@@ -42,6 +69,9 @@ class CustomerService
         return $arr;            
     }
 
+    /**
+     * Initialize {REGEXP} DB function on {SQLITE} engine 
+     */
     private function initializeRegexpDBFunction(){
         if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {               
             DB::connection()->getPdo()->sqliteCreateFunction('REGEXP', function ($pattern, $value) {               
