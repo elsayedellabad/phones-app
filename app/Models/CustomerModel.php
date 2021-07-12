@@ -10,6 +10,7 @@ class CustomerModel extends Model
 {
     use HasFactory;
     protected  $table='customer';
+    public $timestamps = false;
     protected  $appends = [Constants::COUNTRY_COL_NAME, Constants::STATE_COL_NAME, Constants::COUNTRY_CODE_COL_NAME, Constants::PHONE_NUM_COL_NAME];
 
     /**
