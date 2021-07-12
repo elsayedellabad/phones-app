@@ -38,3 +38,8 @@ DB_DATABASE=C:/wamp64/www/phones-app/database/sample.db
 ```sh
 http://localhost/phones-app/public/api/customers
 ```
+
+##### Running Tests by using the following command:
+```sh
+php artisan test
+```
