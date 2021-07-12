@@ -15,7 +15,5 @@ use App\Http\Controllers\PhonesController;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
+    return view('welcome');
 });
-Route::get('/',[PhonesController::class,'index']);
-Route::get('/{country_code?}/{state?}',[PhonesController::class,'index']);
