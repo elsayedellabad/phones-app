@@ -1,7 +1,7 @@
 # Phones-App
 Backend App for Countries Phones Filteration Project by using Laravel Framework [V-8].
 
-##### Server Requirments
+### Server Requirments
 
 WAMP/XAMP server which have the following packages enabled:
 
@@ -16,11 +16,11 @@ WAMP/XAMP server which have the following packages enabled:
 - Tokenizer PHP Extension
 - XML PHP Extension
 
-##### Install Composer Dependency Manager for PHP:
+### Install Composer Dependency Manager for PHP:
 
 - You can download it from https://getcomposer.org/
 
-##### Installation steps:
+### Installation steps:
 
 1- Apply the following steps after opening CMD from the root path of your server as ex.[C:/wamp64/www/]:
 ```sh
@@ -39,7 +39,7 @@ DB_DATABASE=C:/wamp64/www/phones-app/database/sample.db
 http://localhost/phones-app/public/api/customers
 ```
 
-##### Running Tests by using the following command:
+### Running Tests by using the following command:
 ```sh
 php artisan test
 ```
