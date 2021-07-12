@@ -22,14 +22,14 @@ WAMP/XAMP server which have the following packages enabled:
 
 ### Installation steps:
 
-1- Apply the following steps after opening CMD from the root path of your server as ex.[C:/wamp64/www/]:
+1- Apply the following commands after opening CMD from the root path of your server as ex.[C:/wamp64/www/]:
 ```sh
 git clone https://github.com/elsayedellabad/phones-app.git
 cd phones-app
 composer install
 ```
 
-2- Update DB file path in the following configuration file ".env" in the root path of project to be able to read DB file successfully:
+2- Update DB file path with yours in the following configuration file "phones-app/.env" to be able to read DB file successfully and there is a smaple:
 ```sh
 DB_DATABASE=C:/wamp64/www/phones-app/database/sample.db
 ```
